@@ -1,11 +1,24 @@
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
+import Login from './pages/login';
+import Dashboard from './pages/dashboard';
+import Signup from './pages/signup';
+import ProtectedRoute from './routes/ProtectedRoute';
+
+
 function App() {
   
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <h1 className="text-4xl text-pink-500 font-bold">
-        Tailwind is working 
-      </h1>
-    </div>
+    <Routes>
+      <Route path = "/login" element= {<Login />} />
+      <Route path = "/signup" element= {<Signup />} />
+
+      <Route path = "/dashboard" element = {
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+    </Routes>
   );
 }
 
